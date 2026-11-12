@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "estado": "contenido_aprobado_por_usuario",
   "idioma": "es-CO",
   "fuente": "Datos de contacto, horarios y políticas de citas confirmados por el usuario; precios de la última imagen de Servicios; alcances e indicaciones propuestos y aprobados por el usuario.",
@@ -155,7 +155,7 @@
     "Cancelar o reprogramar una cita no tiene cargos adicionales ni penalizaciones. Se solicita presencialmente en recepción o por teléfono al 3042818284. La reprogramación está sujeta a disponibilidad. No inventar plazos ni políticas de devolución.",
     "No exigir requisitos adicionales para solicitar una cita. Compartir las indicaciones clínicas registradas como orientación previa, sin convertirlas en condiciones de agendamiento ni inventar preparación específica, ayunos o dosis.",
     "Para explicar el registro de cuenta, mascotas o citas, seguir las guías del sistema y distinguir los datos obligatorios de los opcionales. No pedir que el visitante escriba su contraseña ni datos de registro en el chat.",
-    "No mostrar rutas internas ni endpoints al visitante; mencionar únicamente las opciones y botones visibles de la web. No usar tablas ni listas: explicar servicios, precios y procesos con párrafos naturales."
+    "No mostrar rutas internas ni endpoints. Usar párrafos para dudas, viñetas para servicios y precios y pasos numerados para procesos. No usar tablas."
   ],
   "preguntas_frecuentes": [
     {
@@ -211,7 +211,7 @@
     {
       "tema": "citas",
       "pregunta": "¿Cómo puedo agendar una cita para mi mascota y elegir un horario que esté disponible?",
-      "respuesta": "Primero entra a tu cuenta desde Ingresar al sistema. Si aún no has añadido a tu mascota, puedes hacerlo en Mis Mascotas, con la opción Nueva Mascota.\n\nDespués abre Mis Citas y pulsa Agendar cita. Elige a tu mascota, el tipo de servicio y el servicio que necesitas; luego selecciona una fecha y una hora disponibles y cuéntanos el motivo de la visita.\n\nCuando revises que todo está bien, pulsa Agendar Cita. Al terminar, comprueba que tu cita aparezca en Mis Citas."
+      "respuesta": "1. Inicia sesión. Si todavía no tienes una mascota registrada, agrégala primero desde Mis Mascotas.\n2. Abre Mis Citas y pulsa Agendar cita o Agendar mi primera cita.\n3. Selecciona la mascota que recibirá la atención.\n4. Elige el tipo de servicio y después uno de los servicios que aparezcan disponibles en el formulario.\n5. Selecciona la fecha y una de las horas disponibles. Si no hay horas, prueba otra fecha.\n6. Escribe el motivo de la visita en el campo correspondiente.\n7. Revisa los datos y pulsa Agendar Cita.\n8. Espera a que finalice el registro. Si se guarda correctamente, volverás a Mis Citas; verifica que la cita aparezca allí. Si se muestra un error, sigue sus indicaciones antes de intentar de nuevo."
     },
     {
       "tema": "cancelacion",
@@ -246,17 +246,17 @@
     {
       "tema": "registro_cuenta",
       "pregunta": "¿Cómo puedo registrarme en la web de vetclinic y qué datos necesito para crear mi cuenta?",
-      "respuesta": "Para crear tu cuenta, pulsa Ingresar al sistema y elige la opción para registrarte. Primero completa tu primer nombre, primer apellido y teléfono; también puedes añadir tus otros nombres, apellidos y dirección.\n\nDespués selecciona tu tipo de documento, escribe su número y añade un correo electrónico válido. Para terminar, elige una contraseña de al menos ocho caracteres, repítela y pulsa Crear cuenta.\n\nCuando se complete el registro, podrás iniciar sesión con tu correo y esa contraseña. Por tu privacidad, escribe estos datos en el formulario de la web, no en este chat."
+      "respuesta": "1. Para comenzar, pulsa Ingresar al sistema y luego elige la opción para crear una cuenta.\n2. En el primer paso completa primer nombre, primer apellido y teléfono. Puedes añadir segundo nombre, segundo apellido y dirección.\n3. Continúa al segundo paso y selecciona el tipo de documento, escribe el número de documento y un correo electrónico válido.\n4. En el tercer paso crea una contraseña de al menos 8 caracteres y repítela exactamente en la confirmación.\n5. Pulsa Crear cuenta. Si hay un error, revisa el mensaje y corrige los datos indicados.\n6. Cuando termines de crear tu cuenta, verás la pantalla de inicio de sesión. Allí podrás entrar con tu correo y la contraseña que elegiste."
     },
     {
       "tema": "registro_perro",
       "pregunta": "¿Cómo añado a mi perro a mi cuenta para poder seleccionarlo cuando vaya a pedir una cita?",
-      "respuesta": "Con tu sesión iniciada, entra a Mis Mascotas y pulsa Nueva Mascota. Escribe el nombre de tu perro, selecciona Perro como especie y elige su sexo. Si quieres, puedes completar también la raza, la fecha de nacimiento, el peso y alguna observación.\n\nDespués pulsa Crear Mascota y espera a que se guarde. Cuando tu perro aparezca en Mis Mascotas, ya podrás seleccionarlo al pedir una cita. Puedes tener hasta cinco mascotas activas en tu cuenta."
+      "respuesta": "1. Inicia sesión y abre Mis Mascotas.\n2. Pulsa Nueva Mascota.\n3. Escribe el nombre de tu perro, selecciona Perro en especie y elige su sexo.\n4. Si deseas, completa raza, fecha de nacimiento, peso y observaciones. La fecha de nacimiento no puede ser futura; si ingresas un peso, debe estar entre 0,01 y 500 kg.\n5. Pulsa Crear Mascota y espera a que el sistema termine de guardar.\n6. Al regresar a Mis Mascotas, verifica que tu perro aparezca en el listado. Luego podrás seleccionarlo al agendar una cita."
     },
     {
       "tema": "registro_cita_pasos",
       "pregunta": "¿Ya tengo cuenta y mascota registrada, cuáles son los pasos para registrar una cita desde la web?",
-      "respuesta": "Primero entra a tu cuenta desde Ingresar al sistema. Si aún no has añadido a tu mascota, puedes hacerlo en Mis Mascotas, con la opción Nueva Mascota.\n\nDespués abre Mis Citas y pulsa Agendar cita. Elige a tu mascota, el tipo de servicio y el servicio que necesitas; luego selecciona una fecha y una hora disponibles y cuéntanos el motivo de la visita.\n\nCuando revises que todo está bien, pulsa Agendar Cita. Al terminar, comprueba que tu cita aparezca en Mis Citas."
+      "respuesta": "1. Inicia sesión. Si todavía no tienes una mascota registrada, agrégala primero desde Mis Mascotas.\n2. Abre Mis Citas y pulsa Agendar cita o Agendar mi primera cita.\n3. Selecciona la mascota que recibirá la atención.\n4. Elige el tipo de servicio y después uno de los servicios que aparezcan disponibles en el formulario.\n5. Selecciona la fecha y una de las horas disponibles. Si no hay horas, prueba otra fecha.\n6. Escribe el motivo de la visita en el campo correspondiente.\n7. Revisa los datos y pulsa Agendar Cita.\n8. Espera a que finalice el registro. Si se guarda correctamente, volverás a Mis Citas; verifica que la cita aparezca allí. Si se muestra un error, sigue sus indicaciones antes de intentar de nuevo."
     },
     {
       "tema": "cita_sin_mascota",
@@ -271,7 +271,7 @@
     {
       "tema": "catalogo_precios",
       "pregunta": "¿Qué servicios ofrecen y cuáles son sus precios?",
-      "respuesta": "Para revisar la salud de tu mascota, la consulta general cuesta $90.000 COP, la avanzada $100.000 COP y la especializada $180.000 COP. La general es una valoración inicial; la avanzada permite profundizar y hacer seguimiento de un problema con un veterinario general; la especializada se enfoca en un área concreta.\n\nLa vacunación cuesta $50.000 COP. Nuestro equipo te confirmará cuál vacuna corresponde a esa tarifa y si es adecuada para tu mascota.\n\nPara el cuidado del pelaje, el baño medicado cuesta $40.000 COP y el corte de pelo $35.000 COP. También ofrecemos limpieza dental por $60.000 COP y cirugía menor por $300.000 COP. Antes de realizar estos procedimientos, el equipo te explicará qué incluyen y las indicaciones que debes seguir."
+      "respuesta": "Estos son nuestros servicios y sus precios:\n\n• Consulta Avanzada: $100.000 COP. Evaluación detallada y seguimiento de un problema persistente por un veterinario general.\n• Consulta General: $90.000 COP. Valoración inicial mediante revisión física general y orientación veterinaria.\n• Consulta Especializada: $180.000 COP. Valoración de un área específica de salud por un veterinario con formación en esa área.\n• Vacunación: $50.000 COP. Aplicación de vacunas\n• Baño Medicado: $40.000 COP. Baño con productos medicinales\n• Corte de Pelo: $35.000 COP. Corte y arreglo de pelo\n• Limpieza Dental: $60.000 COP. Limpieza dental\n• Cirugía Menor: $300.000 COP. Procedimiento quirúrgico menor"
     }
   ],
   "respuesta_sin_informacion": "No tengo esa información confirmada. Puedes consultar con vetclinic al teléfono 3042818284 o al correo fjgarrido@unibarranquilla.edu.co.",
@@ -333,10 +333,10 @@
   },
   "estilo_respuestas": {
     "tono": "Cercano, amable y natural, como una persona de recepción que explica con paciencia. Hablar de tú, sin frases robóticas ni tecnicismos.",
-    "formato": "Responder exclusivamente en párrafos cortos de texto sencillo. No usar tablas, columnas, barras verticales, listas con viñetas, listas numeradas, encabezados Markdown ni bloques de código. Separar las ideas con una línea en blanco.",
+    "formato": "Usar párrafos para explicar dudas, viñetas para servicios y precios, y pasos numerados para registrarse o agendar. No usar tablas, columnas, barras verticales, rutas técnicas, HTML ni bloques de código.",
     "navegacion": "Explicar dónde pulsar usando los nombres visibles de las pantallas, opciones y botones. Nunca mostrar rutas internas, endpoints, nombres de archivos ni detalles de implementación. Se puede compartir el enlace público del mapa cuando la persona lo solicite.",
-    "precios": "Escribir los valores como $90.000 COP. Al mostrar todo el catálogo, agrupar los servicios en párrafos por afinidad y explicar brevemente qué ofrece cada uno. Si preguntan por un solo servicio, responder solo sobre ese servicio.",
-    "pasos": "Explicar los procesos en orden con frases como Primero, Después y Al terminar, distribuidas en párrafos. No convertir las instrucciones en listas numeradas.",
+    "precios": "Escribir precios como $90.000 COP. Presentar servicios y precios con viñetas claras, sin tablas. Responder solo lo relevante a la pregunta.",
+    "pasos": "Explicar el registro y el agendamiento con pasos numerados, usando nombres visibles de botones y pantallas.",
     "longitud": "Contestar lo necesario para resolver la duda, sin repetir siempre todo el catálogo, los contactos o las instrucciones de registro. Terminar con una pregunta de seguimiento solo cuando ayude a la persona."
   }
 }

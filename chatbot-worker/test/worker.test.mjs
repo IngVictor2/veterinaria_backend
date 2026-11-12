@@ -119,3 +119,36 @@ test('el contexto enviado es menor que la base completa y limita el historial', 
  const res = await worker.fetch(request({ message: 'Hola', history: Array(6).fill({ role: 'user', content: 'Hola' }) }), env);
  assert.equal(res.status, 200);
 });
+
+
+test('conserva viñetas y pasos numerados y expone consumo sin datos privados', async () => {
+ const mock = async () => Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: ['• Consulta: $90.000 COP.\n• Vacunación: $50.000 COP.', '1. Entra a tu cuenta.\n2. Abre Mis Citas.'] }) } }], usage: { prompt_tokens: 1200, completion_tokens: 100, total_tokens: 1300 } });
+ const res = await createWorker(knowledge, mock).fetch(request({ message: 'Hola' }), env);
+ const data = await res.json();
+ assert.match(data.answer, /• Consulta/);
+ assert.match(data.answer, /\n2\. Abre/);
+ assert.equal(data.usage.total_tokens, 1300);
+});
+
+test('Qwen responde si los dos primeros modelos no tienen cuota', async () => {
+ const models=[];
+ const mock=async (url, init) => {
+  models.push(JSON.parse(init.body).model);
+  return models.length < 3 ? new Response('',{status:429}) : Response.json({choices:[{message:{content:JSON.stringify({paragraphs:['Hola, ¿en qué puedo ayudarte?']})}}]});
+ };
+ const res=await createWorker(knowledge,mock).fetch(request({message:'Hola'}),env);
+ assert.equal(res.status,200);
+ assert.deepEqual(models,['openai/gpt-oss-20b','openai/gpt-oss-120b','qwen/qwen3.8-27b']);
+});
+
+
+test('un modelo bloqueado por permisos no impide usar Qwen', async () => {
+ const models=[];
+ const worker=createWorker(knowledge, async (url, init) => {
+  const model=JSON.parse(init.body).model;models.push(model);
+  return model.startsWith('openai/') ? new Response('', {status:403}) : Response.json({choices:[{message:{content:JSON.stringify({paragraphs:['Hola.' ]})}}]});
+ });
+ const res=await worker.fetch(request({message:'Hola'}),env);
+ assert.equal(res.status,200);
+ assert.equal(models.at(-1),'qwen/qwen3.8-27b');
+});
