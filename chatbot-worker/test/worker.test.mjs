@@ -16,7 +16,7 @@ test('envía datos oficiales y solo el historial admitido, sin revelar la clave'
     assert.match(sent.messages[0].content, /3042818284/);
     assert.equal(sent.messages.at(-1).content, '¿Y los domingos?');
     assert.equal(sent.messages[1].content, '¿Qué horario tienen?');
-    return Response.json({ choices: [{ message: { content: 'Los domingos de 7:00 a. m. a 1:00 p. m.' } }] });
+    return Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: ['Los domingos de 7:00 a. m. a 1:00 p. m.'] }) } }] });
   });
   const response = await worker.fetch(request({ message: '¿Y los domingos?', history: [{ role: 'user', content: '¿Qué horario tienen?' }] }), env);
   assert.equal(response.status, 200);
@@ -68,4 +68,18 @@ test('cuota de Groq, fallo de red y respuestas inválidas tienen errores control
     assert.equal(res.status, expected);
     assert.doesNotMatch(await res.text(), /detalle privado|clave-ficticia/);
   }
+});
+
+test('convierte párrafos estructurados en texto sencillo', async () => {
+ const mock = async () => Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: ['**Primero** entra a tu cuenta.', 'Después abre Mis Mascotas.'] }) } }] });
+ const res = await createWorker(knowledge, mock).fetch(request({ message: 'Cómo me registro' }), env);
+ assert.equal((await res.json()).answer, 'Primero entra a tu cuenta.\n\nDespués abre Mis Mascotas.');
+});
+
+test('no muestra tablas ni rutas internas del modelo', async () => {
+ for (const paragraph of ['Servicio | Precio', 'Entra a /login para continuar.']) {
+ const mock = async () => Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: [paragraph] }) } }] });
+ const res = await createWorker(knowledge, mock).fetch(request({ message: 'Hola' }), env);
+ assert.equal(res.status, 503);
+ }
 });

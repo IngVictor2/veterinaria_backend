@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "estado": "contenido_aprobado_por_usuario",
   "idioma": "es-CO",
   "fuente": "Datos de contacto, horarios y políticas de citas confirmados por el usuario; precios de la última imagen de Servicios; alcances e indicaciones propuestos y aprobados por el usuario.",
@@ -133,7 +133,6 @@
   ],
   "citas": {
     "orientacion": "Crea tu cuenta o inicia sesión, registra tu mascota en Mis Mascotas y luego abre Mis Citas para seleccionar Agendar cita. Elige mascota, tipo de servicio, servicio, fecha y hora disponibles, escribe el motivo y pulsa Agendar Cita. Verifica el registro en Mis Citas.",
-    "ruta_ingreso": "/login",
     "politica_cancelacion": "La persona puede cancelar su cita si lo desea. No se cobra ningún cargo adicional ni penalización por cancelar una cita.",
     "disponibilidad": "Para conocer los horarios disponibles, ingresa al sistema y consulta las opciones para el servicio y la fecha que deseas. Elige uno de los espacios que el sistema muestre disponibles. Si no encuentras una opción que te sirva, revisa otra fecha o comunícate con vetclinic al 3042818284. El horario de atención indica cuándo abre la sede; los cupos para citas dependen de la agenda actualizada. El asistente orienta sobre el proceso y no confirma cupos ni reservas sin consultar el sistema.",
     "politica_reprogramacion": "El cliente puede reprogramar su cita si lo desea, sin cargos adicionales ni penalizaciones. La nueva fecha y hora están sujetas a la disponibilidad de la agenda.",
@@ -142,7 +141,7 @@
     "procedimiento_reprogramacion": "Para reprogramar una cita programada, el cliente debe acercarse a recepción o llamar al 3042818284 y solicitar el cambio al personal. La nueva fecha y hora están sujetas a disponibilidad. No se realiza mediante este chatbot."
   },
   "reglas_asistente": [
-    "Responder en español de forma amable, clara y con suficiente detalle para resolver la pregunta.",
+    "Responder en español de manera cercana, humana y explicativa, en párrafos cortos y fáciles de entender. Seguir el estilo_respuestas de esta base.",
     "Usar únicamente información confirmada de esta base o de una fuente autorizada del sistema.",
     "Los campos null representan información desconocida; nunca completarlos por suposición.",
     "No inventar precios, servicios, requisitos, contactos ni horarios especiales.",
@@ -155,7 +154,8 @@
     "Ofrecer únicamente el teléfono y el correo registrados. No ofrecer WhatsApp ni redes sociales.",
     "Cancelar o reprogramar una cita no tiene cargos adicionales ni penalizaciones. Se solicita presencialmente en recepción o por teléfono al 3042818284. La reprogramación está sujeta a disponibilidad. No inventar plazos ni políticas de devolución.",
     "No exigir requisitos adicionales para solicitar una cita. Compartir las indicaciones clínicas registradas como orientación previa, sin convertirlas en condiciones de agendamiento ni inventar preparación específica, ayunos o dosis.",
-    "Para explicar el registro de cuenta, mascotas o citas, seguir las guías del sistema y distinguir los datos obligatorios de los opcionales. No pedir que el visitante escriba su contraseña ni datos de registro en el chat."
+    "Para explicar el registro de cuenta, mascotas o citas, seguir las guías del sistema y distinguir los datos obligatorios de los opcionales. No pedir que el visitante escriba su contraseña ni datos de registro en el chat.",
+    "No mostrar rutas internas ni endpoints al visitante; mencionar únicamente las opciones y botones visibles de la web. No usar tablas ni listas: explicar servicios, precios y procesos con párrafos naturales."
   ],
   "preguntas_frecuentes": [
     {
@@ -181,12 +181,12 @@
     {
       "tema": "servicios",
       "pregunta": "¿Qué servicios ofrece vetclinic y cuáles pertenecen a consulta, estética u otros procedimientos?",
-      "respuesta": "El catálogo incluye Consulta General, Consulta Avanzada, Consulta Especializada y Vacunación en consulta; Baño Medicado, Corte de Pelo y Limpieza Dental en estética; y Cirugía Menor en otros procedimientos. Puedes preguntarme por el precio y la descripción de cada servicio."
+      "respuesta": "Podemos ayudarte con la salud y el cuidado de tu mascota. Contamos con consulta general, avanzada y especializada, además de vacunación. Para el cuidado del pelaje ofrecemos baño medicado y corte de pelo; también tenemos limpieza dental y cirugía menor. Si me cuentas qué servicio te interesa, te explico su precio y lo que incluye."
     },
     {
       "tema": "precios_consultas",
       "pregunta": "¿Cuánto cuestan la Consulta General, la Consulta Avanzada y la Consulta Especializada, y cómo se describe cada una?",
-      "respuesta": "La Consulta General cuesta $90.000 COP y corresponde a una valoración inicial con revisión física general. La Consulta Avanzada cuesta $100.000 COP y profundiza un problema persistente o su seguimiento con un veterinario general. La Consulta Especializada cuesta $180.000 COP y se enfoca en un área específica con un veterinario formado en ella; confirma la especialidad disponible con recepción."
+      "respuesta": "La consulta general cuesta $90.000 COP y es una primera revisión para conocer cómo está tu mascota y orientarte sobre su cuidado.\n\nSi tiene un problema que persiste o necesita seguimiento más detallado, la consulta avanzada cuesta $100.000 COP y la realiza un veterinario general.\n\nLa consulta especializada cuesta $180.000 COP y está enfocada en un área concreta de la salud, con un veterinario formado en ella. Para conocer la especialidad disponible, puedes consultar con recepción."
     },
     {
       "tema": "precio_vacunacion",
@@ -211,7 +211,7 @@
     {
       "tema": "citas",
       "pregunta": "¿Cómo puedo agendar una cita para mi mascota y elegir un horario que esté disponible?",
-      "respuesta": "Crea tu cuenta o inicia sesión, registra tu mascota en Mis Mascotas y luego abre Mis Citas para seleccionar Agendar cita. Elige mascota, tipo de servicio, servicio, fecha y hora disponibles, escribe el motivo y pulsa Agendar Cita. Verifica el registro en Mis Citas."
+      "respuesta": "Primero entra a tu cuenta desde Ingresar al sistema. Si aún no has añadido a tu mascota, puedes hacerlo en Mis Mascotas, con la opción Nueva Mascota.\n\nDespués abre Mis Citas y pulsa Agendar cita. Elige a tu mascota, el tipo de servicio y el servicio que necesitas; luego selecciona una fecha y una hora disponibles y cuéntanos el motivo de la visita.\n\nCuando revises que todo está bien, pulsa Agendar Cita. Al terminar, comprueba que tu cita aparezca en Mis Citas."
     },
     {
       "tema": "cancelacion",
@@ -246,17 +246,17 @@
     {
       "tema": "registro_cuenta",
       "pregunta": "¿Cómo puedo registrarme en la web de vetclinic y qué datos necesito para crear mi cuenta?",
-      "respuesta": "Abre Ingresar al sistema y accede al enlace de registro, o entra a /register. En el primer paso completa primer nombre, primer apellido y teléfono. Puedes añadir segundo nombre, segundo apellido y dirección. Continúa al segundo paso y selecciona el tipo de documento, escribe el número de documento y un correo electrónico válido. En el tercer paso crea una contraseña de al menos 8 caracteres y repítela exactamente en la confirmación. Pulsa Crear cuenta. Si hay un error, revisa el mensaje y corrige los datos indicados. Cuando el registro termine correctamente, el sistema te llevará a /login. Inicia sesión con tu correo y contraseña. Introduce los datos personales y la contraseña únicamente en el formulario del sistema, no en el chatbot."
+      "respuesta": "Para crear tu cuenta, pulsa Ingresar al sistema y elige la opción para registrarte. Primero completa tu primer nombre, primer apellido y teléfono; también puedes añadir tus otros nombres, apellidos y dirección.\n\nDespués selecciona tu tipo de documento, escribe su número y añade un correo electrónico válido. Para terminar, elige una contraseña de al menos ocho caracteres, repítela y pulsa Crear cuenta.\n\nCuando se complete el registro, podrás iniciar sesión con tu correo y esa contraseña. Por tu privacidad, escribe estos datos en el formulario de la web, no en este chat."
     },
     {
       "tema": "registro_perro",
       "pregunta": "¿Cómo añado a mi perro a mi cuenta para poder seleccionarlo cuando vaya a pedir una cita?",
-      "respuesta": "Inicia sesión y abre Mis Mascotas. Pulsa Nueva Mascota. Escribe el nombre de tu perro, selecciona Perro en especie y elige su sexo. Si deseas, completa raza, fecha de nacimiento, peso y observaciones. La fecha de nacimiento no puede ser futura; si ingresas un peso, debe estar entre 0,01 y 500 kg. Pulsa Crear Mascota y espera a que el sistema termine de guardar. Al regresar a Mis Mascotas, verifica que tu perro aparezca en el listado. Luego podrás seleccionarlo al agendar una cita. La cuenta de cliente permite hasta 5 mascotas activas. Si alcanzas ese límite, no podrás añadir otra activa hasta desactivar una existente."
+      "respuesta": "Con tu sesión iniciada, entra a Mis Mascotas y pulsa Nueva Mascota. Escribe el nombre de tu perro, selecciona Perro como especie y elige su sexo. Si quieres, puedes completar también la raza, la fecha de nacimiento, el peso y alguna observación.\n\nDespués pulsa Crear Mascota y espera a que se guarde. Cuando tu perro aparezca en Mis Mascotas, ya podrás seleccionarlo al pedir una cita. Puedes tener hasta cinco mascotas activas en tu cuenta."
     },
     {
       "tema": "registro_cita_pasos",
       "pregunta": "¿Ya tengo cuenta y mascota registrada, cuáles son los pasos para registrar una cita desde la web?",
-      "respuesta": "Inicia sesión. Si todavía no tienes una mascota registrada, agrégala primero desde Mis Mascotas. Abre Mis Citas y pulsa Agendar cita o Agendar mi primera cita. Selecciona la mascota que recibirá la atención. Elige el tipo de servicio y después uno de los servicios que aparezcan disponibles en el formulario. Selecciona la fecha y una de las horas disponibles. Si no hay horas, prueba otra fecha. Escribe el motivo de la visita en el campo correspondiente. Revisa los datos y pulsa Agendar Cita. Espera a que finalice el registro. Si se guarda correctamente, volverás a Mis Citas; verifica que la cita aparezca allí. Si se muestra un error, sigue sus indicaciones antes de intentar de nuevo."
+      "respuesta": "Primero entra a tu cuenta desde Ingresar al sistema. Si aún no has añadido a tu mascota, puedes hacerlo en Mis Mascotas, con la opción Nueva Mascota.\n\nDespués abre Mis Citas y pulsa Agendar cita. Elige a tu mascota, el tipo de servicio y el servicio que necesitas; luego selecciona una fecha y una hora disponibles y cuéntanos el motivo de la visita.\n\nCuando revises que todo está bien, pulsa Agendar Cita. Al terminar, comprueba que tu cita aparezca en Mis Citas."
     },
     {
       "tema": "cita_sin_mascota",
@@ -266,7 +266,12 @@
     {
       "tema": "seleccion_servicio",
       "pregunta": "¿Cómo encuentro y selecciono el servicio que necesito al agendar una cita, incluida Cirugía Menor?",
-      "respuesta": "Los servicios ya aparecen en el formulario de agendamiento. Selecciona el tipo correspondiente: Consulta, Estética u Otro, y después el servicio que necesitas. Cirugía Menor pertenece a Otro. Después selecciona la fecha y una hora disponible, escribe el motivo de la visita y pulsa Agendar Cita."
+      "respuesta": "Al agendar tu cita, elige primero el tipo de atención y después el servicio que necesitas. Por ejemplo, encontrarás la Cirugía Menor en la categoría Otro.\n\nLuego selecciona la fecha y una hora disponible, escribe el motivo de la visita y pulsa Agendar Cita. Al terminar, verifica que la cita aparezca en Mis Citas."
+    },
+    {
+      "tema": "catalogo_precios",
+      "pregunta": "¿Qué servicios ofrecen y cuáles son sus precios?",
+      "respuesta": "Para revisar la salud de tu mascota, la consulta general cuesta $90.000 COP, la avanzada $100.000 COP y la especializada $180.000 COP. La general es una valoración inicial; la avanzada permite profundizar y hacer seguimiento de un problema con un veterinario general; la especializada se enfoca en un área concreta.\n\nLa vacunación cuesta $50.000 COP. Nuestro equipo te confirmará cuál vacuna corresponde a esa tarifa y si es adecuada para tu mascota.\n\nPara el cuidado del pelaje, el baño medicado cuesta $40.000 COP y el corte de pelo $35.000 COP. También ofrecemos limpieza dental por $60.000 COP y cirugía menor por $300.000 COP. Antes de realizar estos procedimientos, el equipo te explicará qué incluyen y las indicaciones que debes seguir."
     }
   ],
   "respuesta_sin_informacion": "No tengo esa información confirmada. Puedes consultar con vetclinic al teléfono 3042818284 o al correo fjgarrido@unibarranquilla.edu.co.",
@@ -276,20 +281,17 @@
   "aclaracion_indicaciones": "Las indicaciones de cada servicio no son requisitos adicionales para solicitar una cita. La preparación clínica específica debe ser indicada por el equipo veterinario según el procedimiento y la mascota.",
   "guias_sistema": {
     "registro_cuenta": {
-      "ruta": "/register",
       "pasos": [
-        "Abre Ingresar al sistema y accede al enlace de registro, o entra a /register.",
+        "Para comenzar, pulsa Ingresar al sistema y luego elige la opción para crear una cuenta.",
         "En el primer paso completa primer nombre, primer apellido y teléfono. Puedes añadir segundo nombre, segundo apellido y dirección.",
         "Continúa al segundo paso y selecciona el tipo de documento, escribe el número de documento y un correo electrónico válido.",
         "En el tercer paso crea una contraseña de al menos 8 caracteres y repítela exactamente en la confirmación.",
         "Pulsa Crear cuenta. Si hay un error, revisa el mensaje y corrige los datos indicados.",
-        "Cuando el registro termine correctamente, el sistema te llevará a /login. Inicia sesión con tu correo y contraseña."
+        "Cuando termines de crear tu cuenta, verás la pantalla de inicio de sesión. Allí podrás entrar con tu correo y la contraseña que elegiste."
       ],
       "privacidad": "Introduce los datos personales y la contraseña únicamente en el formulario del sistema, no en el chatbot."
     },
     "registro_perro": {
-      "ruta_listado": "/mis-mascotas",
-      "ruta_formulario": "/mascotas/nueva",
       "requiere_sesion": true,
       "campos_obligatorios": [
         "Nombre",
@@ -314,8 +316,6 @@
       "limite": "La cuenta de cliente permite hasta 5 mascotas activas. Si alcanzas ese límite, no podrás añadir otra activa hasta desactivar una existente."
     },
     "registro_cita": {
-      "ruta_listado": "/mis-citas",
-      "ruta_formulario": "/mis-citas/nueva",
       "requiere_sesion": true,
       "requiere_mascota_registrada": true,
       "pasos": [
@@ -330,5 +330,13 @@
       ],
       "seleccion_servicio": "Los servicios ya aparecen en el formulario de agendamiento. Selecciona el tipo correspondiente: Consulta, Estética u Otro, y después el servicio que necesitas. Cirugía Menor pertenece a Otro."
     }
+  },
+  "estilo_respuestas": {
+    "tono": "Cercano, amable y natural, como una persona de recepción que explica con paciencia. Hablar de tú, sin frases robóticas ni tecnicismos.",
+    "formato": "Responder exclusivamente en párrafos cortos de texto sencillo. No usar tablas, columnas, barras verticales, listas con viñetas, listas numeradas, encabezados Markdown ni bloques de código. Separar las ideas con una línea en blanco.",
+    "navegacion": "Explicar dónde pulsar usando los nombres visibles de las pantallas, opciones y botones. Nunca mostrar rutas internas, endpoints, nombres de archivos ni detalles de implementación. Se puede compartir el enlace público del mapa cuando la persona lo solicite.",
+    "precios": "Escribir los valores como $90.000 COP. Al mostrar todo el catálogo, agrupar los servicios en párrafos por afinidad y explicar brevemente qué ofrece cada uno. Si preguntan por un solo servicio, responder solo sobre ese servicio.",
+    "pasos": "Explicar los procesos en orden con frases como Primero, Después y Al terminar, distribuidas en párrafos. No convertir las instrucciones en listas numeradas.",
+    "longitud": "Contestar lo necesario para resolver la duda, sin repetir siempre todo el catálogo, los contactos o las instrucciones de registro. Terminar con una pregunta de seguimiento solo cuando ayude a la persona."
   }
 }
