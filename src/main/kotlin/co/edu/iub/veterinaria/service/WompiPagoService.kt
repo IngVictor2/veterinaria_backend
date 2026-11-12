@@ -43,7 +43,9 @@ class WompiPagoService(
 
     @Transactional
     fun crearCheckout(idFactura: Int, authentication: Authentication): WompiCheckoutResponse {
-        if (!wompiClient.estaConfigurado()) throw WompiNotConfiguredException()
+        if (!wompiClient.estaConfigurado()) {
+            throw WompiNotConfiguredException(wompiClient.diagnosticoConfiguracion())
+        }
 
         val factura = facturaRepository.findById(idFactura)
             .orElseThrow { ResourceNotFoundException("Factura no encontrada") }

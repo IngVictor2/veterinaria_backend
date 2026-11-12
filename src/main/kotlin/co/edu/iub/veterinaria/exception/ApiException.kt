@@ -11,7 +11,7 @@ class InvalidCredentialsException(message: String) : ApiException(message, HttpS
 class InvalidStatusTransitionException(message: String) : ApiException(message, HttpStatus.BAD_REQUEST)
 class InvalidRequestException(message: String) : ApiException(message, HttpStatus.BAD_REQUEST)
 
-class WompiNotConfiguredException : ApiException(
-    "La pasarela Wompi no está configurada en modo sandbox.",
+class WompiNotConfiguredException(detalle: String) : ApiException(
+    "La pasarela Wompi no está configurada en modo sandbox. Revisa en Render: $detalle",
     HttpStatus.SERVICE_UNAVAILABLE
 )

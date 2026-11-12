@@ -32,12 +32,35 @@ class WompiClient(
             .baseUrl(baseUrl.trimEnd('/'))
             .requestFactory(requestFactory)
             .build()
+
+        log.info(
+            "Wompi config: baseUrl={}, publicKeySandbox={}, privateKeySandbox={}, integritySecret={}, eventsSecret={}",
+            baseUrl.trimEnd('/'),
+            publicKey.startsWith("pub_test_"),
+            privateKey.startsWith("prv_test_"),
+            integritySecret.isNotBlank(),
+            eventsSecret.isNotBlank()
+        )
     }
 
     fun estaConfigurado(): Boolean =
         publicKey.startsWith("pub_test_") &&
             privateKey.startsWith("prv_test_") &&
             integritySecret.isNotBlank()
+
+    fun diagnosticoConfiguracion(): String {
+        val problemas = mutableListOf<String>()
+        if (!publicKey.startsWith("pub_test_")) {
+            problemas += "WOMPI_PUBLIC_KEY debe existir y empezar con pub_test_ (${describirPrefijo(publicKey)})"
+        }
+        if (!privateKey.startsWith("prv_test_")) {
+            problemas += "WOMPI_PRIVATE_KEY debe existir y empezar con prv_test_ (${describirPrefijo(privateKey)})"
+        }
+        if (integritySecret.isBlank()) {
+            problemas += "WOMPI_INTEGRITY_SECRET está vacío"
+        }
+        return problemas.joinToString("; ")
+    }
 
     fun webhookConfigurado(): Boolean = eventsSecret.isNotBlank()
 
@@ -110,6 +133,9 @@ class WompiClient(
             emptyList()
         }
     }
+
+    private fun describirPrefijo(valor: String): String =
+        if (valor.isBlank()) "vacío" else "valor actual empieza con ${valor.take(9)}"
 
     private fun resolverPropiedad(root: JsonNode, path: String): String? {
         var node: JsonNode = root
