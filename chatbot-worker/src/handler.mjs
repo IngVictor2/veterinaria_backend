@@ -100,25 +100,36 @@ export function createWorker(knowledge, fetchGroq = fetch) {
         let response;
         let usedModel;
         const deadline = Date.now() + 19000;
-        for (const model of models) {
-          if ((cooldown.get(model) || 0) > Date.now()) continue;
+        const availableModels = models.filter(model => (cooldown.get(model) || 0) <= Date.now());
+        for (const [index, model] of availableModels.entries()) {
           const remaining = deadline - Date.now();
           if (remaining < 1000) break;
           usedModel = model;
+          try {
           response = await fetchGroq('https://api.groq.com/openai/v1/chat/completions', {
           method: 'POST',
           headers: { Authorization: `Bearer ${env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({ model, messages: [{ role: 'system', content: system }, ...history.slice(-2).map(m => ({ role: m.role, content: m.content.trim().slice(0, 600) })), { role: 'user', content: body.message.trim() }], temperature: 0.2, max_completion_tokens: 700, reasoning_effort: "low", response_format: { type: "json_object" } }),
-          signal: AbortSignal.timeout(Math.min(10000, remaining))
+          signal: AbortSignal.timeout(Math.max(1000, Math.floor(remaining / (availableModels.length - index))))
         });
+          } catch {
+            cooldown.set(model, Date.now() + 30000);
+            response = undefined;
+            continue;
+          }
           if ([403, 404, 429, 503, 502, 504].includes(response.status)) {
-            const seconds = Number(response.headers.get('retry-after'));
-            cooldown.set(model, Date.now() + (Number.isFinite(seconds) && seconds > 0 ? Math.min(seconds, 3600) : 60) * 1000);
+            const retryAfter = response.headers.get('retry-after');
+            const seconds = Number(retryAfter);
+            const retryDate = retryAfter ? Date.parse(retryAfter) : NaN;
+            const delay = Number.isFinite(seconds) && seconds > 0 ? seconds * 1000
+              : Number.isFinite(retryDate) && retryDate > Date.now() ? retryDate - Date.now() : 60000;
+            cooldown.set(model, Date.now() + Math.min(delay, 86400000));
             continue;
           }
           break;
         }
-        if (!response || response.status === 429) return error('PROVIDER_LIMIT', knowledge.respuesta_ia_no_disponible, 429, { 'Retry-After': '60' });
+        if (!availableModels.length || response?.status === 429) return error('PROVIDER_LIMIT', knowledge.respuesta_ia_no_disponible, 429, { 'Retry-After': '60' });
+        if (!response) return error('SERVICE_UNAVAILABLE', knowledge.respuesta_ia_no_disponible, 503);
         if (!response.ok) return json({ error: { code: 'PROVIDER_UNAVAILABLE', message: knowledge.respuesta_ia_no_disponible }, provider_status: response.status, model: usedModel }, 503);
         const data = await response.json();
         const answer = data.choices?.[0]?.message?.content;

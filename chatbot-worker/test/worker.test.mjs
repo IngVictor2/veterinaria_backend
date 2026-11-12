@@ -152,3 +152,30 @@ test('un modelo bloqueado por permisos no impide usar Qwen', async () => {
  assert.equal(res.status,200);
  assert.equal(models.at(-1),'qwen/qwen3.8-27b');
 });
+
+
+test('rota por agotamiento, salta modelos en espera y recupera el principal al reiniciarse su cuota', async t => {
+ let clock=1000000;
+ t.mock.method(Date,'now',()=>clock);
+ const calls=[];
+ const worker=createWorker(knowledge,async(url,init)=>{
+  const model=JSON.parse(init.body).model;calls.push(model);
+  if(clock===1000000 && model!=='qwen/qwen3.8-27b')return new Response('',{status:429,headers:{'Retry-After':'120'}});
+  return Response.json({choices:[{message:{content:JSON.stringify({paragraphs:['Puedo ayudarte con vetclinic.']})}}]});
+ });
+ for(let i=0;i<2;i++)assert.equal((await worker.fetch(request({message:'Hola'}),env)).status,200);
+ assert.deepEqual(calls,['openai/gpt-oss-20b','openai/gpt-oss-120b','qwen/qwen3.8-27b','qwen/qwen3.8-27b']);
+ clock+=121000;
+ await worker.fetch(request({message:'Hola'}),env);
+ assert.equal(calls.at(-1),'openai/gpt-oss-20b');
+});
+
+test('pasa al siguiente modelo ante fallo de conexión',async()=>{
+ let calls=0;
+ const worker=createWorker(knowledge,async()=>{
+  if(++calls===1)throw Error('fallo de red');
+  return Response.json({choices:[{message:{content:JSON.stringify({paragraphs:['Hola.']})}}]});
+ });
+ assert.equal((await worker.fetch(request({message:'Hola'}),env)).status,200);
+ assert.equal(calls,2);
+});
