@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vetclinic-chatbot",
+  "main": "dist/worker.mjs",
+  "compatibility_date": "2026-11-12",
+  "workers_dev": true,
+  "vars": {
+    "GROQ_MODEL": "openai/gpt-oss-20b",
+    "ALLOWED_ORIGINS": "http://localhost:4200,https://veterinaria-one-nu.vercel.app,https://vetclinicbaq.vercel.app,https://vetclinic-eight.vercel.app"
+  },
+  "ratelimits": [
+    { "name": "CHAT_RATE_LIMITER", "namespace_id": "482831", "simple": { "limit": 6, "period": 60 } },
+    { "name": "TOTAL_RATE_LIMITER", "namespace_id": "482832", "simple": { "limit": 20, "period": 60 } }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "vetclinic-chatbot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test --test-isolation=none",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "check": "npm run build && wrangler deploy --dry-run"
+  },
+  "devDependencies": { "wrangler": "^4.36.0" }
+}
