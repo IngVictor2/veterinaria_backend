@@ -52,4 +52,4 @@ app:
         currency: COP
 
     cors:
-        allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:4200,https://vetclinic-h6ohzil4r-sapoturcos-projects.vercel.app,https://vetclinic-eight.vercel.app,https://veterinaria-one-nu.vercel.app}
+        allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:4200,https://vetclinic-h6ohzil4r-sapoturcos-projects.vercel.app,https://vetclinic-eight.vercel.app,https://veterinaria-one-nu.vercel.app,https://vetclinicbaq.vercel.app}
