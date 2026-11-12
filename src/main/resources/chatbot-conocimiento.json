@@ -1,0 +1,334 @@
+{
+  "version": 7,
+  "estado": "contenido_aprobado_por_usuario",
+  "idioma": "es-CO",
+  "fuente": "Datos de contacto, horarios y políticas de citas confirmados por el usuario; precios de la última imagen de Servicios; alcances e indicaciones propuestos y aprobados por el usuario.",
+  "veterinaria": {
+    "nombre": "vetclinic",
+    "ubicacion": {
+      "ciudad": "Barranquilla",
+      "departamento": "Atlántico",
+      "pais": "Colombia",
+      "direccion": "Carrera 45 # 48-31",
+      "enlace_mapa": "https://maps.app.goo.gl/Gu1SnnxR6zzAzMX87",
+      "sede": "Sede Plaza de la Paz"
+    },
+    "zona_horaria": "America/Bogota",
+    "horarios_publicados": [
+      {
+        "dias": [
+          "lunes",
+          "martes",
+          "miércoles",
+          "jueves",
+          "viernes",
+          "sábado"
+        ],
+        "apertura": "07:00",
+        "cierre": "18:00"
+      },
+      {
+        "dias": [
+          "domingo"
+        ],
+        "apertura": "07:00",
+        "cierre": "13:00"
+      }
+    ],
+    "horario_festivos": "Los días festivos se atiende con el mismo horario del día de la semana correspondiente: de lunes a sábado de 07:00 a 18:00 y los domingos de 07:00 a 13:00. No hay horarios especiales por festivos.",
+    "contacto": {
+      "telefono": "3042818284",
+      "correo": "fjgarrido@unibarranquilla.edu.co"
+    }
+  },
+  "servicios": [
+    {
+      "nombre": "Consulta Avanzada",
+      "tipo": "CONSULTA",
+      "precio": 100000,
+      "moneda": "COP",
+      "descripcion": "Evaluación detallada y seguimiento de un problema persistente por un veterinario general.",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Evaluación detallada de un problema que persiste o necesita seguimiento por un veterinario general. Incluye revisión de antecedentes, evolución de los síntomas y resultados de exámenes disponibles para orientar el manejo del caso.",
+      "indicaciones_clinicas": "Comparte cómo ha evolucionado el problema, los tratamientos recibidos y los resultados de estudios anteriores, si cuentas con ellos. Esto ayuda a revisar el caso con mayor detalle."
+    },
+    {
+      "nombre": "Consulta General",
+      "tipo": "CONSULTA",
+      "precio": 90000,
+      "moneda": "COP",
+      "descripcion": "Valoración inicial mediante revisión física general y orientación veterinaria.",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Valoración inicial de la mascota mediante preguntas al responsable y revisión física general. Incluye orientación sobre su estado de salud y recomendaciones sobre los siguientes pasos.",
+      "indicaciones_clinicas": "Describe el motivo de consulta, cuándo comenzaron los síntomas y si la mascota recibe algún tratamiento. Si tienes antecedentes o resultados de exámenes, puedes llevarlos."
+    },
+    {
+      "nombre": "Consulta Especializada",
+      "tipo": "CONSULTA",
+      "precio": 180000,
+      "moneda": "COP",
+      "descripcion": "Valoración de un área específica de salud por un veterinario con formación en esa área.",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Valoración enfocada en un área específica de la salud de la mascota, realizada por un veterinario con formación en esa área. Incluye evaluación del caso y recomendaciones especializadas. La especialidad disponible se confirma con recepción.",
+      "indicaciones_clinicas": "Confirma con recepción la especialidad y el profesional disponible. Si tienes una remisión, historia clínica o exámenes previos, puedes presentarlos durante la valoración."
+    },
+    {
+      "nombre": "Vacunación",
+      "tipo": "CONSULTA",
+      "precio": 50000,
+      "moneda": "COP",
+      "descripcion": "Aplicación de vacunas",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Aplicación de la vacuna correspondiente al servicio contratado y registro de la aplicación. El equipo confirma previamente cuál vacuna cubre esta tarifa y si corresponde aplicarla a la mascota.",
+      "indicaciones_clinicas": "Informa sobre vacunas anteriores, enfermedades, tratamientos actuales o reacciones previas. El veterinario determinará si corresponde realizar la aplicación."
+    },
+    {
+      "nombre": "Baño Medicado",
+      "tipo": "ESTETICA",
+      "precio": 40000,
+      "moneda": "COP",
+      "descripcion": "Baño con productos medicinales",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Limpieza del pelaje y la piel mediante un baño con productos medicinales indicados por el veterinario. Su finalidad y el producto utilizado dependen de la necesidad de la mascota.",
+      "indicaciones_clinicas": "Informa sobre lesiones en la piel, alergias o reacciones a productos. Si la mascota tiene una indicación veterinaria para el baño, compártela con el equipo."
+    },
+    {
+      "nombre": "Corte de Pelo",
+      "tipo": "ESTETICA",
+      "precio": 35000,
+      "moneda": "COP",
+      "descripcion": "Corte y arreglo de pelo",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Corte y arreglo del pelaje según lo acordado con el responsable, considerando su estado y la tolerancia de la mascota durante el servicio.",
+      "indicaciones_clinicas": "Explica el corte que deseas e informa si la mascota tiene piel sensible, lesiones o dificultades durante la manipulación. El equipo confirmará qué arreglo puede realizarse."
+    },
+    {
+      "nombre": "Limpieza Dental",
+      "tipo": "ESTETICA",
+      "precio": 60000,
+      "moneda": "COP",
+      "descripcion": "Limpieza dental",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Limpieza de los dientes para retirar acumulaciones de placa y sarro. La técnica y el alcance del procedimiento se determinan mediante valoración veterinaria y se explican antes de realizarlo.",
+      "indicaciones_clinicas": "Consulta previamente con el equipo si se necesita valoración o preparación. Si el procedimiento requiere anestesia, las instrucciones se comunicarán directamente antes de la atención."
+    },
+    {
+      "nombre": "Cirugía Menor",
+      "tipo": "OTRO",
+      "precio": 300000,
+      "moneda": "COP",
+      "descripcion": "Procedimiento quirúrgico menor",
+      "activo": true,
+      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
+      "alcance": "Realización de un procedimiento quirúrgico menor previamente valorado por el veterinario. Antes de programarlo se informa qué intervención se realizará, qué cubre la tarifa y cuáles serán los cuidados posteriores.",
+      "indicaciones_clinicas": "Sigue las instrucciones que entregue el veterinario sobre valoración previa, preparación y cuidados posteriores. No cambies medicamentos ni establezcas ayuno por cuenta propia."
+    }
+  ],
+  "citas": {
+    "orientacion": "Crea tu cuenta o inicia sesión, registra tu mascota en Mis Mascotas y luego abre Mis Citas para seleccionar Agendar cita. Elige mascota, tipo de servicio, servicio, fecha y hora disponibles, escribe el motivo y pulsa Agendar Cita. Verifica el registro en Mis Citas.",
+    "ruta_ingreso": "/login",
+    "politica_cancelacion": "La persona puede cancelar su cita si lo desea. No se cobra ningún cargo adicional ni penalización por cancelar una cita.",
+    "disponibilidad": "Para conocer los horarios disponibles, ingresa al sistema y consulta las opciones para el servicio y la fecha que deseas. Elige uno de los espacios que el sistema muestre disponibles. Si no encuentras una opción que te sirva, revisa otra fecha o comunícate con vetclinic al 3042818284. El horario de atención indica cuándo abre la sede; los cupos para citas dependen de la agenda actualizada. El asistente orienta sobre el proceso y no confirma cupos ni reservas sin consultar el sistema.",
+    "politica_reprogramacion": "El cliente puede reprogramar su cita si lo desea, sin cargos adicionales ni penalizaciones. La nueva fecha y hora están sujetas a la disponibilidad de la agenda.",
+    "requisitos": "No hay requisitos adicionales de atención para solicitar una cita. Para agendar desde la web necesitas iniciar sesión, tener la mascota registrada y completar los campos del formulario.",
+    "procedimiento_cancelacion": "Para cancelar una cita programada, el cliente debe acercarse a recepción o llamar al 3042818284 y solicitar la cancelación al personal. No se realiza mediante este chatbot.",
+    "procedimiento_reprogramacion": "Para reprogramar una cita programada, el cliente debe acercarse a recepción o llamar al 3042818284 y solicitar el cambio al personal. La nueva fecha y hora están sujetas a disponibilidad. No se realiza mediante este chatbot."
+  },
+  "reglas_asistente": [
+    "Responder en español de forma amable, clara y con suficiente detalle para resolver la pregunta.",
+    "Usar únicamente información confirmada de esta base o de una fuente autorizada del sistema.",
+    "Los campos null representan información desconocida; nunca completarlos por suposición.",
+    "No inventar precios, servicios, requisitos, contactos ni horarios especiales.",
+    "No afirmar que existe disponibilidad ni que se registró una cita sin confirmación del sistema.",
+    "No diagnosticar, recetar medicamentos ni indicar dosis; dirigir las consultas clínicas al veterinario.",
+    "No solicitar contraseñas, datos de pago ni historias clínicas en el chat.",
+    "Si falta información, reconocerlo y orientar hacia recepción sin inventar un canal de contacto.",
+    "Expresar los precios en pesos colombianos (COP). Explicar únicamente el alcance registrado para cada servicio y la aclaración de tarifas, sin inventar inclusiones ni exclusiones.",
+    "Los festivos siguen el horario regular del día de la semana: lunes a sábado de 07:00 a 18:00 y domingos de 07:00 a 13:00. No ofrecer horarios especiales por festivos.",
+    "Ofrecer únicamente el teléfono y el correo registrados. No ofrecer WhatsApp ni redes sociales.",
+    "Cancelar o reprogramar una cita no tiene cargos adicionales ni penalizaciones. Se solicita presencialmente en recepción o por teléfono al 3042818284. La reprogramación está sujeta a disponibilidad. No inventar plazos ni políticas de devolución.",
+    "No exigir requisitos adicionales para solicitar una cita. Compartir las indicaciones clínicas registradas como orientación previa, sin convertirlas en condiciones de agendamiento ni inventar preparación específica, ayunos o dosis.",
+    "Para explicar el registro de cuenta, mascotas o citas, seguir las guías del sistema y distinguir los datos obligatorios de los opcionales. No pedir que el visitante escriba su contraseña ni datos de registro en el chat."
+  ],
+  "preguntas_frecuentes": [
+    {
+      "tema": "horarios",
+      "pregunta": "¿Cuál es el horario de vetclinic entre semana y los sábados si quiero llevar a mi mascota?",
+      "respuesta": "Atendemos de lunes a sábado de 7:00 a. m. a 6:00 p. m. y los domingos de 7:00 a. m. a 1:00 p. m. Los días festivos conservan el horario del día de la semana en que caigan. Para saber qué citas están disponibles, consulta la agenda del sistema."
+    },
+    {
+      "tema": "domingos_festivos",
+      "pregunta": "¿Vetclinic atiende los domingos y los días festivos, y cómo puedo consultar el horario para una fecha concreta?",
+      "respuesta": "Sí, atendemos los domingos y los días festivos. Los domingos el horario es de 7:00 a. m. a 1:00 p. m. Si el festivo cae de lunes a sábado, atendemos de 7:00 a. m. a 6:00 p. m.; si cae en domingo, de 7:00 a. m. a 1:00 p. m. No hay cambios de horario por ser festivo."
+    },
+    {
+      "tema": "ubicacion",
+      "pregunta": "¿Cuál es la dirección exacta de vetclinic y a qué sede debo dirigirme para la atención de mi mascota?",
+      "respuesta": "Estamos en Carrera 45 # 48-31, Sede Plaza de la Paz, en Barranquilla, Atlántico, Colombia. Puedes consultar la ubicación en Google Maps: https://maps.app.goo.gl/Gu1SnnxR6zzAzMX87. Si necesitas ayuda para llegar, llama al 3042818284."
+    },
+    {
+      "tema": "contacto",
+      "pregunta": "¿A qué número puedo llamar o a qué correo puedo escribir para resolver una duda antes de agendar?",
+      "respuesta": "Puedes comunicarte con vetclinic al teléfono 3042818284 o al correo fjgarrido@unibarranquilla.edu.co. Estos son los canales de contacto confirmados para solicitar información sobre la atención, los servicios y las citas."
+    },
+    {
+      "tema": "servicios",
+      "pregunta": "¿Qué servicios ofrece vetclinic y cuáles pertenecen a consulta, estética u otros procedimientos?",
+      "respuesta": "El catálogo incluye Consulta General, Consulta Avanzada, Consulta Especializada y Vacunación en consulta; Baño Medicado, Corte de Pelo y Limpieza Dental en estética; y Cirugía Menor en otros procedimientos. Puedes preguntarme por el precio y la descripción de cada servicio."
+    },
+    {
+      "tema": "precios_consultas",
+      "pregunta": "¿Cuánto cuestan la Consulta General, la Consulta Avanzada y la Consulta Especializada, y cómo se describe cada una?",
+      "respuesta": "La Consulta General cuesta $90.000 COP y corresponde a una valoración inicial con revisión física general. La Consulta Avanzada cuesta $100.000 COP y profundiza un problema persistente o su seguimiento con un veterinario general. La Consulta Especializada cuesta $180.000 COP y se enfoca en un área específica con un veterinario formado en ella; confirma la especialidad disponible con recepción."
+    },
+    {
+      "tema": "precio_vacunacion",
+      "pregunta": "¿Qué precio tiene el servicio de Vacunación y necesito cumplir algún requisito especial para solicitar la cita?",
+      "respuesta": "La Vacunación cuesta $50.000 COP e incluye la aplicación de la vacuna correspondiente al servicio contratado y el registro de la aplicación. El equipo confirma cuál vacuna cubre esa tarifa y si corresponde aplicarla a tu mascota. No hay requisitos adicionales para solicitar la cita; informa al equipo sobre vacunas anteriores, enfermedades, tratamientos o reacciones previas."
+    },
+    {
+      "tema": "precios_estetica",
+      "pregunta": "¿Cuánto cuestan el Baño Medicado y el Corte de Pelo, y necesito algún requisito especial para agendarlos?",
+      "respuesta": "El Baño Medicado cuesta $40.000 COP y se describe como baño con productos medicinales. El Corte de Pelo cuesta $35.000 COP y se describe como corte y arreglo de pelo. No hay requisitos adicionales para solicitar una cita de estos servicios; selecciona el servicio y un horario disponible en el sistema."
+    },
+    {
+      "tema": "precio_limpieza_dental",
+      "pregunta": "¿Cuánto cuesta la Limpieza Dental y hay requisitos adicionales para solicitar una cita de este servicio?",
+      "respuesta": "La Limpieza Dental cuesta $60.000 COP y consiste en la limpieza de los dientes para retirar acumulaciones de placa y sarro. La técnica y el alcance se definen mediante valoración veterinaria. No hay requisitos adicionales para agendar; consulta con el equipo si se necesita preparación y, si requiere anestesia, sigue las instrucciones que te comuniquen antes de la atención."
+    },
+    {
+      "tema": "precio_cirugia",
+      "pregunta": "¿Cuánto cuesta la Cirugía Menor y ese precio permite saber qué procedimientos o cuidados están incluidos?",
+      "respuesta": "La Cirugía Menor cuesta $300.000 COP y corresponde a un procedimiento quirúrgico menor previamente valorado por el veterinario. Antes de programarlo, el equipo informa qué intervención se realizará, qué cubre la tarifa y los cuidados posteriores. Los exámenes, medicamentos o procedimientos adicionales se informan con su costo antes de realizarlos."
+    },
+    {
+      "tema": "citas",
+      "pregunta": "¿Cómo puedo agendar una cita para mi mascota y elegir un horario que esté disponible?",
+      "respuesta": "Crea tu cuenta o inicia sesión, registra tu mascota en Mis Mascotas y luego abre Mis Citas para seleccionar Agendar cita. Elige mascota, tipo de servicio, servicio, fecha y hora disponibles, escribe el motivo y pulsa Agendar Cita. Verifica el registro en Mis Citas."
+    },
+    {
+      "tema": "cancelacion",
+      "pregunta": "¿Puedo cancelar una cita si ya no puedo asistir y tendría que pagar alguna multa o cargo adicional?",
+      "respuesta": "Sí, puedes cancelar tu cita si lo deseas, sin cargos adicionales ni penalizaciones. Para solicitar la cancelación, acércate a recepción o llama al 3042818284 para que el personal cancele tu cita programada. Este chatbot no realiza cancelaciones."
+    },
+    {
+      "tema": "reprogramacion",
+      "pregunta": "¿Puedo cambiar mi cita para otra fecha u hora si lo necesito y tendría que pagar algún cargo adicional?",
+      "respuesta": "Sí, puedes reprogramar tu cita si lo deseas, sin cargos adicionales ni penalizaciones. Acércate a recepción o llama al 3042818284 para solicitar el cambio al personal. La nueva fecha y hora están sujetas a disponibilidad en la agenda. Este chatbot no realiza reprogramaciones."
+    },
+    {
+      "tema": "requisitos",
+      "pregunta": "¿Necesito cumplir algún requisito especial para solicitar una cita de consulta o de otro servicio para mi mascota?",
+      "respuesta": "No hay requisitos adicionales de atención para solicitar una cita. Para agendar desde la web necesitas iniciar sesión, tener la mascota registrada y completar los campos del formulario. Si aún no tienes cuenta o mascota registrada, puedo explicarte los pasos."
+    },
+    {
+      "tema": "disponibilidad",
+      "pregunta": "¿Cómo puedo saber si hay una cita disponible para el día que necesito y qué hago si no encuentro un horario?",
+      "respuesta": "Para conocer los horarios disponibles, ingresa al sistema y consulta las opciones para el servicio y la fecha que deseas. Elige uno de los espacios que el sistema muestre disponibles. Si no encuentras una opción que te sirva, revisa otra fecha o comunícate con vetclinic al 3042818284. El horario de atención indica cuándo abre la sede; los cupos para citas dependen de la agenda actualizada. El asistente orienta sobre el proceso y no confirma cupos ni reservas sin consultar el sistema."
+    },
+    {
+      "tema": "alcances",
+      "pregunta": "¿Qué incluye el precio de cada servicio y cómo se manejan los exámenes, medicamentos o procedimientos adicionales?",
+      "respuesta": "Los exámenes, medicamentos y procedimientos adicionales solo se realizarán después de informar al responsable de la mascota sobre su necesidad y costo. Antes de la atención, se confirmará qué incluye la tarifa del servicio elegido. Puedes preguntarme por el alcance específico de cada servicio."
+    },
+    {
+      "tema": "indicaciones_clinicas",
+      "pregunta": "¿Las indicaciones para la atención son requisitos obligatorios para solicitar una cita y quién me explica la preparación?",
+      "respuesta": "Las indicaciones de cada servicio no son requisitos adicionales para solicitar una cita. La preparación clínica específica debe ser indicada por el equipo veterinario según el procedimiento y la mascota. Puedes consultar las indicaciones del servicio que necesitas; las instrucciones particulares deben recibirse directamente del equipo veterinario."
+    },
+    {
+      "tema": "registro_cuenta",
+      "pregunta": "¿Cómo puedo registrarme en la web de vetclinic y qué datos necesito para crear mi cuenta?",
+      "respuesta": "Abre Ingresar al sistema y accede al enlace de registro, o entra a /register. En el primer paso completa primer nombre, primer apellido y teléfono. Puedes añadir segundo nombre, segundo apellido y dirección. Continúa al segundo paso y selecciona el tipo de documento, escribe el número de documento y un correo electrónico válido. En el tercer paso crea una contraseña de al menos 8 caracteres y repítela exactamente en la confirmación. Pulsa Crear cuenta. Si hay un error, revisa el mensaje y corrige los datos indicados. Cuando el registro termine correctamente, el sistema te llevará a /login. Inicia sesión con tu correo y contraseña. Introduce los datos personales y la contraseña únicamente en el formulario del sistema, no en el chatbot."
+    },
+    {
+      "tema": "registro_perro",
+      "pregunta": "¿Cómo añado a mi perro a mi cuenta para poder seleccionarlo cuando vaya a pedir una cita?",
+      "respuesta": "Inicia sesión y abre Mis Mascotas. Pulsa Nueva Mascota. Escribe el nombre de tu perro, selecciona Perro en especie y elige su sexo. Si deseas, completa raza, fecha de nacimiento, peso y observaciones. La fecha de nacimiento no puede ser futura; si ingresas un peso, debe estar entre 0,01 y 500 kg. Pulsa Crear Mascota y espera a que el sistema termine de guardar. Al regresar a Mis Mascotas, verifica que tu perro aparezca en el listado. Luego podrás seleccionarlo al agendar una cita. La cuenta de cliente permite hasta 5 mascotas activas. Si alcanzas ese límite, no podrás añadir otra activa hasta desactivar una existente."
+    },
+    {
+      "tema": "registro_cita_pasos",
+      "pregunta": "¿Ya tengo cuenta y mascota registrada, cuáles son los pasos para registrar una cita desde la web?",
+      "respuesta": "Inicia sesión. Si todavía no tienes una mascota registrada, agrégala primero desde Mis Mascotas. Abre Mis Citas y pulsa Agendar cita o Agendar mi primera cita. Selecciona la mascota que recibirá la atención. Elige el tipo de servicio y después uno de los servicios que aparezcan disponibles en el formulario. Selecciona la fecha y una de las horas disponibles. Si no hay horas, prueba otra fecha. Escribe el motivo de la visita en el campo correspondiente. Revisa los datos y pulsa Agendar Cita. Espera a que finalice el registro. Si se guarda correctamente, volverás a Mis Citas; verifica que la cita aparezca allí. Si se muestra un error, sigue sus indicaciones antes de intentar de nuevo."
+    },
+    {
+      "tema": "cita_sin_mascota",
+      "pregunta": "¿Por qué no puedo agendar una cita si todavía no he registrado a mi perro?",
+      "respuesta": "El formulario necesita una mascota registrada para asociarle la cita. Abre Mis Mascotas, pulsa Nueva Mascota, completa nombre, especie Perro y sexo, y pulsa Crear Mascota. Después vuelve a Mis Citas para agendar."
+    },
+    {
+      "tema": "seleccion_servicio",
+      "pregunta": "¿Cómo encuentro y selecciono el servicio que necesito al agendar una cita, incluida Cirugía Menor?",
+      "respuesta": "Los servicios ya aparecen en el formulario de agendamiento. Selecciona el tipo correspondiente: Consulta, Estética u Otro, y después el servicio que necesitas. Cirugía Menor pertenece a Otro. Después selecciona la fecha y una hora disponible, escribe el motivo de la visita y pulsa Agendar Cita."
+    }
+  ],
+  "respuesta_sin_informacion": "No tengo esa información confirmada. Puedes consultar con vetclinic al teléfono 3042818284 o al correo fjgarrido@unibarranquilla.edu.co.",
+  "respuesta_ia_no_disponible": "El asistente de IA no está disponible en este momento. Puedes consultar las preguntas frecuentes sobre horarios, ubicación, servicios y cómo agendar.",
+  "pendientes_de_confirmar": [],
+  "aclaracion_tarifas": "Los exámenes, medicamentos y procedimientos adicionales solo se realizarán después de informar al responsable de la mascota sobre su necesidad y costo. Antes de la atención, se confirmará qué incluye la tarifa del servicio elegido.",
+  "aclaracion_indicaciones": "Las indicaciones de cada servicio no son requisitos adicionales para solicitar una cita. La preparación clínica específica debe ser indicada por el equipo veterinario según el procedimiento y la mascota.",
+  "guias_sistema": {
+    "registro_cuenta": {
+      "ruta": "/register",
+      "pasos": [
+        "Abre Ingresar al sistema y accede al enlace de registro, o entra a /register.",
+        "En el primer paso completa primer nombre, primer apellido y teléfono. Puedes añadir segundo nombre, segundo apellido y dirección.",
+        "Continúa al segundo paso y selecciona el tipo de documento, escribe el número de documento y un correo electrónico válido.",
+        "En el tercer paso crea una contraseña de al menos 8 caracteres y repítela exactamente en la confirmación.",
+        "Pulsa Crear cuenta. Si hay un error, revisa el mensaje y corrige los datos indicados.",
+        "Cuando el registro termine correctamente, el sistema te llevará a /login. Inicia sesión con tu correo y contraseña."
+      ],
+      "privacidad": "Introduce los datos personales y la contraseña únicamente en el formulario del sistema, no en el chatbot."
+    },
+    "registro_perro": {
+      "ruta_listado": "/mis-mascotas",
+      "ruta_formulario": "/mascotas/nueva",
+      "requiere_sesion": true,
+      "campos_obligatorios": [
+        "Nombre",
+        "Especie: Perro",
+        "Sexo"
+      ],
+      "campos_opcionales": [
+        "Raza",
+        "Fecha de nacimiento",
+        "Peso en kilogramos",
+        "Observaciones"
+      ],
+      "limite_mascotas_activas": 5,
+      "pasos": [
+        "Inicia sesión y abre Mis Mascotas.",
+        "Pulsa Nueva Mascota.",
+        "Escribe el nombre de tu perro, selecciona Perro en especie y elige su sexo.",
+        "Si deseas, completa raza, fecha de nacimiento, peso y observaciones. La fecha de nacimiento no puede ser futura; si ingresas un peso, debe estar entre 0,01 y 500 kg.",
+        "Pulsa Crear Mascota y espera a que el sistema termine de guardar.",
+        "Al regresar a Mis Mascotas, verifica que tu perro aparezca en el listado. Luego podrás seleccionarlo al agendar una cita."
+      ],
+      "limite": "La cuenta de cliente permite hasta 5 mascotas activas. Si alcanzas ese límite, no podrás añadir otra activa hasta desactivar una existente."
+    },
+    "registro_cita": {
+      "ruta_listado": "/mis-citas",
+      "ruta_formulario": "/mis-citas/nueva",
+      "requiere_sesion": true,
+      "requiere_mascota_registrada": true,
+      "pasos": [
+        "Inicia sesión. Si todavía no tienes una mascota registrada, agrégala primero desde Mis Mascotas.",
+        "Abre Mis Citas y pulsa Agendar cita o Agendar mi primera cita.",
+        "Selecciona la mascota que recibirá la atención.",
+        "Elige el tipo de servicio y después uno de los servicios que aparezcan disponibles en el formulario.",
+        "Selecciona la fecha y una de las horas disponibles. Si no hay horas, prueba otra fecha.",
+        "Escribe el motivo de la visita en el campo correspondiente.",
+        "Revisa los datos y pulsa Agendar Cita.",
+        "Espera a que finalice el registro. Si se guarda correctamente, volverás a Mis Citas; verifica que la cita aparezca allí. Si se muestra un error, sigue sus indicaciones antes de intentar de nuevo."
+      ],
+      "seleccion_servicio": "Los servicios ya aparecen en el formulario de agendamiento. Selecciona el tipo correspondiente: Consulta, Estética u Otro, y después el servicio que necesitas. Cirugía Menor pertenece a Otro."
+    }
+  }
+}
