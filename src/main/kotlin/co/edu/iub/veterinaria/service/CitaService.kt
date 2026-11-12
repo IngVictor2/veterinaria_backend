@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @Service
 class CitaService(
@@ -35,6 +37,8 @@ class CitaService(
         private val HORA_INICIO_JORNADA = LocalTime.of(7, 0)
         private val HORA_FIN_JORNADA = LocalTime.of(18, 0)
         private val HORA_FIN_JORNADA_DOMINGO = LocalTime.of(13, 0)
+        private val ZONA_HORARIA = ZoneId.of("America/Bogota")
+        private val FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     }
 
     @Transactional(readOnly = true)
@@ -199,6 +203,9 @@ class CitaService(
                 "Transiciones permitidas: ${permitidos.joinToString(", ")}"
             )
         }
+        if (nuevoEstado == EstadoCita.ATENDIDA) {
+            validarDiaDeAtencion(cita)
+        }
         cita.estadoCita = nuevoEstado
         citaRepository.save(cita)
         when (nuevoEstado) {
@@ -269,6 +276,16 @@ class CitaService(
             resumen = "Servicio estético: ${request.detalles ?: "Sin detalles"}"
         }
         historialMascotaRepository.save(historial)
+    }
+
+    private fun validarDiaDeAtencion(cita: Cita) {
+        val hoy = LocalDate.now(ZONA_HORARIA)
+        if (cita.fechaCita != hoy) {
+            throw InvalidRequestException(
+                "No se puede marcar como atendida una cita programada para el " +
+                    "${cita.fechaCita.format(FORMATO_FECHA)}. Solo se permite el día de la cita."
+            )
+        }
     }
 
     private fun existeConflictoHorario(
