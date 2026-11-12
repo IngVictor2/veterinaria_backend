@@ -10,3 +10,8 @@ open class ApiException(
 class InvalidCredentialsException(message: String) : ApiException(message, HttpStatus.UNAUTHORIZED)
 class InvalidStatusTransitionException(message: String) : ApiException(message, HttpStatus.BAD_REQUEST)
 class InvalidRequestException(message: String) : ApiException(message, HttpStatus.BAD_REQUEST)
+
+class WompiNotConfiguredException : ApiException(
+    "La pasarela Wompi no está configurada en modo sandbox.",
+    HttpStatus.SERVICE_UNAVAILABLE
+)

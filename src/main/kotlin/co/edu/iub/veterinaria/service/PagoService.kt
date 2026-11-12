@@ -2,6 +2,7 @@ package co.edu.iub.veterinaria.service
 
 import co.edu.iub.veterinaria.dto.pago.PagoRequest
 import co.edu.iub.veterinaria.dto.pago.PagoResponse
+import co.edu.iub.veterinaria.exception.InvalidRequestException
 import co.edu.iub.veterinaria.exception.ResourceNotFoundException
 import co.edu.iub.veterinaria.model.EstadoFactura
 import co.edu.iub.veterinaria.model.Pago
@@ -32,6 +33,9 @@ class PagoService(
             .orElseThrow { ResourceNotFoundException("Factura no encontrada") }
         val metodoPago = metodoPagoRepository.findById(request.idMetodoPago)
             .orElseThrow { ResourceNotFoundException("Método de pago no encontrado") }
+        if (metodoPago.nombre == "Wompi") {
+            throw InvalidRequestException("Los pagos con Wompi deben realizarse desde el checkout en línea")
+        }
 
         val pago = Pago().apply {
             this.factura = factura

@@ -95,6 +95,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/facturas/**").access(moduleAuthorizationManager.hasModule("FACTURACION"))
                     .requestMatchers("/facturas/**").access(moduleAuthorizationManager.hasModule("FACTURACION"))
 
+                    .requestMatchers(HttpMethod.POST, "/pagos/wompi/webhook").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/pagos/checkout", "/pagos/wompi/verificar").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/pagos").hasAnyRole("ADMIN", "RECEPCIONISTA")
                     .requestMatchers("/pagos/**").access(moduleAuthorizationManager.hasModule("FACTURACION"))
                     .requestMatchers(HttpMethod.GET, "/historial/mascota/{idMascota}").authenticated()
                     .requestMatchers("/historial/**").access(moduleAuthorizationManager.hasModule("HISTORIAL"))

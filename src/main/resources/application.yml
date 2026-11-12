@@ -43,5 +43,13 @@ app:
         secret: ${JWT_SECRET:this-is-a-dev-secret-must-be-at-least-32-bytes}
         expiration-minutes: ${JWT_EXPIRATION_MINUTES:30}
 
+    wompi:
+        base-url: ${WOMPI_BASE_URL:https://sandbox.wompi.co/v1}
+        public-key: ${WOMPI_PUBLIC_KEY:}
+        private-key: ${WOMPI_PRIVATE_KEY:}
+        integrity-secret: ${WOMPI_INTEGRITY_SECRET:}
+        events-secret: ${WOMPI_EVENTS_SECRET:}
+        currency: COP
+
     cors:
-        allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:4200,https://vetclinic-h6ohzil4r-sapoturcos-projects.vercel.app,https://vetclinic-eight.vercel.app}
+        allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:4200,https://vetclinic-h6ohzil4r-sapoturcos-projects.vercel.app,https://vetclinic-eight.vercel.app,https://veterinaria-one-nu.vercel.app}

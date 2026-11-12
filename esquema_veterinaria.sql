@@ -296,6 +296,24 @@ CREATE TABLE pago (
     CONSTRAINT chk_pago_monto CHECK(monto > 0)
 );
 
+-- TABLA: transaccion_pago -> intentos de pago en línea con Wompi
+CREATE TABLE transaccion_pago (
+    id_transaccion_pago SERIAL PRIMARY KEY,
+    id_factura INTEGER NOT NULL,
+    referencia VARCHAR(120) NOT NULL UNIQUE,
+    monto_centavos BIGINT NOT NULL,
+    estado_transaccion VARCHAR(20) NOT NULL DEFAULT 'PENDIENTE',
+    id_transaccion_wompi VARCHAR(120),
+    metodo_pago_wompi VARCHAR(40),
+    mensaje VARCHAR(255),
+    estado BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_transaccion_pago_factura FOREIGN KEY(id_factura) REFERENCES factura(id_factura),
+    CONSTRAINT chk_transaccion_pago_estado CHECK(estado_transaccion IN ('PENDIENTE','APROBADA','RECHAZADA','ANULADA','ERROR')),
+    CONSTRAINT chk_transaccion_pago_monto CHECK(monto_centavos > 0)
+);
+
 -- TABLA: historial_mascota -> RF-008
 CREATE TABLE historial_mascota (
     id_historial SERIAL PRIMARY KEY,
@@ -347,6 +365,8 @@ CREATE INDEX idx_cita_empleado ON cita(id_empleado);
 CREATE INDEX idx_cita_fecha ON cita(fecha_cita);
 CREATE INDEX idx_factura_cliente ON factura(id_cliente);
 CREATE INDEX idx_pago_factura ON pago(id_factura);
+CREATE INDEX idx_transaccion_pago_factura ON transaccion_pago(id_factura);
+CREATE INDEX idx_transaccion_pago_wompi ON transaccion_pago(id_transaccion_wompi);
 CREATE INDEX idx_historial_mascota ON historial_mascota(id_mascota);
 CREATE INDEX idx_usuario_rol_usuario ON usuario_rol(id_usuario);
 CREATE INDEX idx_password_reset_usuario ON password_reset_token(id_usuario);
@@ -380,6 +400,7 @@ CREATE TRIGGER trg_factura_updated_at BEFORE UPDATE ON factura FOR EACH ROW EXEC
 CREATE TRIGGER trg_detalle_factura_updated_at BEFORE UPDATE ON detalle_factura FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TRIGGER trg_metodo_pago_updated_at BEFORE UPDATE ON metodo_pago FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TRIGGER trg_pago_updated_at BEFORE UPDATE ON pago FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+CREATE TRIGGER trg_transaccion_pago_updated_at BEFORE UPDATE ON transaccion_pago FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TRIGGER trg_historial_mascota_updated_at BEFORE UPDATE ON historial_mascota FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 CREATE TRIGGER trg_calificacion_updated_at BEFORE UPDATE ON calificacion FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
