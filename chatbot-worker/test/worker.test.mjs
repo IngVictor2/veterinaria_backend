@@ -72,7 +72,7 @@ test('cuota de Groq, fallo de red y respuestas inválidas tienen errores control
 
 test('convierte párrafos estructurados en texto sencillo', async () => {
  const mock = async () => Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: ['**Primero** entra a tu cuenta.', 'Después abre Mis Mascotas.'] }) } }] });
- const res = await createWorker(knowledge, mock).fetch(request({ message: 'Cómo me registro' }), env);
+ const res = await createWorker(knowledge, mock).fetch(request({ message: '¿Qué me recomiendas consultar primero?' }), env);
  assert.equal((await res.json()).answer, 'Primero entra a tu cuenta.\n\nDespués abre Mis Mascotas.');
 });
 
@@ -82,4 +82,40 @@ test('no muestra tablas ni rutas internas del modelo', async () => {
  const res = await createWorker(knowledge, mock).fetch(request({ message: 'Hola' }), env);
  assert.equal(res.status, 503);
  }
+});
+
+
+test('registro de perro y cita usa respuestas aprobadas sin consumir IA', async () => {
+ const worker = createWorker(knowledge, () => { throw Error('No debe llamar a Groq'); });
+ const res = await worker.fetch(request({ message: '¿Cómo registro a mi perro y agendo una cita?' }), env);
+ const data = await res.json();
+ assert.equal(res.status, 200);
+ assert.match(data.answer, /Nueva Mascota/);
+ assert.match(data.answer, /Agendar Cita/);
+});
+
+test('cambia al modelo de respaldo cuando el primero alcanza su cuota', async () => {
+ const models = [];
+ const worker = createWorker(knowledge, async (url, init) => {
+  const body = JSON.parse(init.body);
+  models.push(body.model);
+  assert.ok(body.messages[0].content.length < 15000);
+  if (models.length === 1) return new Response('', { status: 429, headers: { 'Retry-After': '60' } });
+  return Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: ['¿Sobre cuál servicio te gustaría saber más?'] }) } }] });
+ });
+ const res = await worker.fetch(request({ message: 'Quiero orientación sobre mi primera visita.' }), env);
+ assert.equal(res.status, 200);
+ assert.deepEqual(models, ['openai/gpt-oss-20b', 'openai/gpt-oss-120b']);
+});
+
+test('el contexto enviado es menor que la base completa y limita el historial', async () => {
+ const worker = createWorker(knowledge, async (url, init) => {
+  const body = JSON.parse(init.body);
+  assert.ok(body.messages[0].content.length < JSON.stringify(knowledge).length / 2);
+  assert.equal(body.messages.length, 4);
+  assert.equal(body.max_completion_tokens, 700);
+  return Response.json({ choices: [{ message: { content: JSON.stringify({ paragraphs: ['Hola, ¿qué te gustaría saber?'] }) } }] });
+ });
+ const res = await worker.fetch(request({ message: 'Hola', history: Array(6).fill({ role: 'user', content: 'Hola' }) }), env);
+ assert.equal(res.status, 200);
 });

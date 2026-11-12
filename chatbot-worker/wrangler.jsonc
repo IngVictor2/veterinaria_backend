@@ -6,6 +6,7 @@
   "workers_dev": true,
   "vars": {
     "GROQ_MODEL": "openai/gpt-oss-20b",
+    "GROQ_FALLBACK_MODELS": "openai/gpt-oss-120b",
     "ALLOWED_ORIGINS": "http://localhost:4200,https://veterinaria-one-nu.vercel.app,https://vetclinicbaq.vercel.app,https://vetclinic-eight.vercel.app"
   },
   "ratelimits": [

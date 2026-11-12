@@ -95,3 +95,9 @@ en las pruebas automatizadas: todas las respuestas de Groq allí son simuladas.
 
 Referencias: https://console.groq.com/docs/models y
 https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+
+## Ahorro de tokens y respaldo
+
+Las intenciones frecuentes explícitas (horarios, ubicación, registro, citas y catálogo) se responden con texto aprobado del JSON sin llamar a Groq. Las preguntas ambiguas o sobre detalles pasan al modelo, con contexto seleccionado y solo los últimos dos mensajes, hasta 600 caracteres cada uno.
+
+La respuesta reserva hasta 700 tokens y usa razonamiento bajo. GROQ_FALLBACK_MODELS configura modelos alternativos separados por comas; actualmente gpt-oss-120b. Ante 429 o errores temporales 502/503/504 se prueba el siguiente modelo, hasta tres intentos y con un presupuesto total de 19 segundos. Se respeta Retry-After con un enfriamiento local por modelo. Esto no evade ni elimina cuotas compartidas y el enfriamiento no se comparte entre instancias.
