@@ -179,3 +179,33 @@ test('pasa al siguiente modelo ante fallo de conexión',async()=>{
  assert.equal((await worker.fetch(request({message:'Hola'}),env)).status,200);
  assert.equal(calls,2);
 });
+
+
+test('respuestas vacías, truncadas o inválidas prueban el siguiente modelo', async () => {
+ const invalid = [
+  {choices:[]},
+  {choices:[{message:{content:'{incompleto'}}]},
+  {choices:[{message:{content:JSON.stringify({paragraphs:[]})}}]},
+  {choices:[{finish_reason:'length',message:{content:JSON.stringify({paragraphs:['Incompleta']})}}]},
+  {choices:[{message:{content:JSON.stringify({paragraphs:['Servicio | Precio']})}}]},
+  {choices:[{message:{content:JSON.stringify({paragraphs:['Entra a /login.']})}}]}
+ ];
+ for(const bad of invalid){
+  const models=[];
+  const worker=createWorker(knowledge,async(url,init)=>{
+   models.push(JSON.parse(init.body).model);
+   return Response.json(models.length===1?bad:{choices:[{message:{content:JSON.stringify({paragraphs:['No tengo un conteo de animales en la clínica.']})}}]});
+  });
+  const res=await worker.fetch(request({message:'Cuantos animales tienen?'}),env);
+  assert.equal(res.status,200);
+  assert.equal((await res.json()).answer,'No tengo un conteo de animales en la clínica.');
+  assert.deepEqual(models,['openai/gpt-oss-20b','openai/gpt-oss-120b']);
+ }
+});
+
+test('llega hasta Qwen si los dos primeros devuelven formatos incorrectos', async () => {
+ let attempts=0;
+ const worker=createWorker(knowledge,async()=>Response.json(++attempts<3?{choices:[]}:{choices:[{message:{content:JSON.stringify({paragraphs:['Hola, ¿en qué puedo ayudarte?']})}}]}));
+ assert.equal((await worker.fetch(request({message:'Hola'}),env)).status,200);
+ assert.equal(attempts,3);
+});

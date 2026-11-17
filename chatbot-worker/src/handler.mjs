@@ -97,48 +97,52 @@ export function createWorker(knowledge, fetchGroq = fetch) {
         if (direct) return json({ answer: direct, knowledgeVersion: knowledge.version, usage: { source: "local", total_tokens: 0 } });
         const system = prompt(body.message, history);
         const models = [...new Set([env.GROQ_MODEL || 'openai/gpt-oss-20b', ...(env.GROQ_FALLBACK_MODELS || 'openai/gpt-oss-120b,qwen/qwen3.8-27b').split(',').map(m => m.trim()).filter(Boolean)])].slice(0, 3);
-        let response;
-        let usedModel;
         const deadline = Date.now() + 19000;
         const availableModels = models.filter(model => (cooldown.get(model) || 0) <= Date.now());
+        let lastFailure = 'PROVIDER_LIMIT';
         for (const [index, model] of availableModels.entries()) {
           const remaining = deadline - Date.now();
           if (remaining < 1000) break;
-          usedModel = model;
+          const controller = new AbortController();
+          // El plazo cubre tanto los encabezados como la descarga y lectura del cuerpo.
+          const timeout = setTimeout(() => controller.abort(), Math.max(1000, Math.floor(remaining / (availableModels.length - index))));
           try {
-          response = await fetchGroq('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model, messages: [{ role: 'system', content: system }, ...history.slice(-2).map(m => ({ role: m.role, content: m.content.trim().slice(0, 600) })), { role: 'user', content: body.message.trim() }], temperature: 0.2, max_completion_tokens: 700, reasoning_effort: "low", response_format: { type: "json_object" } }),
-          signal: AbortSignal.timeout(Math.max(1000, Math.floor(remaining / (availableModels.length - index))))
-        });
+            const response = await fetchGroq('https://api.groq.com/openai/v1/chat/completions', {
+              method: 'POST',
+              headers: { Authorization: 'Bearer ' + env.GROQ_API_KEY, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ model, messages: [{ role: 'system', content: system }, ...history.slice(-2).map(m => ({ role: m.role, content: m.content.trim().slice(0, 600) })), { role: 'user', content: body.message.trim() }], temperature: 0.2, max_completion_tokens: 700, reasoning_effort: 'low', response_format: { type: 'json_object' } }),
+              signal: controller.signal,
+            });
+            if (!response.ok) {
+              if (response.status === 401) return error('PROVIDER_UNAVAILABLE', knowledge.respuesta_ia_no_disponible, 503);
+              lastFailure = response.status === 429 ? 'PROVIDER_LIMIT' : 'PROVIDER_UNAVAILABLE';
+              const retryAfter = response.headers.get('retry-after');
+              const seconds = Number(retryAfter);
+              const retryDate = retryAfter ? Date.parse(retryAfter) : NaN;
+              const delay = Number.isFinite(seconds) && seconds > 0 ? seconds * 1000
+                : Number.isFinite(retryDate) && retryDate > Date.now() ? retryDate - Date.now() : 60000;
+              cooldown.set(model, Date.now() + Math.min(delay, 86400000));
+              await response.body?.cancel();
+              continue;
+            }
+            const data = await response.json();
+            const choice = data.choices?.[0];
+            if (choice?.finish_reason === 'length') throw Error('INCOMPLETE_RESPONSE');
+            const content = choice?.message?.content;
+            if (typeof content !== 'string' || !content.trim()) throw Error('EMPTY_RESPONSE');
+            const structured = JSON.parse(content);
+            if (!structured || !Array.isArray(structured.paragraphs) || !structured.paragraphs.length || structured.paragraphs.some(p => typeof p !== 'string' || !p.trim())) throw Error('INVALID_RESPONSE_FORMAT');
+            const answer = structured.paragraphs.map(p => p.replace(/\*\*|__|\x60/g, '').replace(/^\s*#{1,6}\s+/gm, '').trim()).join('\n\n');
+            if (!answer.trim() || answer.includes('|') || /(?:^|\s)\/(?:api|login|register|mis-mascotas|mis-citas|mascotas)(?:[\s/.,]|$)/i.test(answer)) throw Error('INVALID_RESPONSE_FORMAT');
+            return json({ answer, knowledgeVersion: knowledge.version, usage: { source: 'groq', model, prompt_tokens: data.usage?.prompt_tokens, completion_tokens: data.usage?.completion_tokens, total_tokens: data.usage?.total_tokens } });
           } catch {
+            lastFailure = 'SERVICE_UNAVAILABLE';
             cooldown.set(model, Date.now() + 30000);
-            response = undefined;
-            continue;
+          } finally {
+            clearTimeout(timeout);
           }
-          if ([403, 404, 429, 503, 502, 504].includes(response.status)) {
-            const retryAfter = response.headers.get('retry-after');
-            const seconds = Number(retryAfter);
-            const retryDate = retryAfter ? Date.parse(retryAfter) : NaN;
-            const delay = Number.isFinite(seconds) && seconds > 0 ? seconds * 1000
-              : Number.isFinite(retryDate) && retryDate > Date.now() ? retryDate - Date.now() : 60000;
-            cooldown.set(model, Date.now() + Math.min(delay, 86400000));
-            continue;
-          }
-          break;
         }
-        if (!availableModels.length || response?.status === 429) return error('PROVIDER_LIMIT', knowledge.respuesta_ia_no_disponible, 429, { 'Retry-After': '60' });
-        if (!response) return error('SERVICE_UNAVAILABLE', knowledge.respuesta_ia_no_disponible, 503);
-        if (!response.ok) return json({ error: { code: 'PROVIDER_UNAVAILABLE', message: knowledge.respuesta_ia_no_disponible }, provider_status: response.status, model: usedModel }, 503);
-        const data = await response.json();
-        const answer = data.choices?.[0]?.message?.content;
-        if (typeof answer !== 'string' || !answer.trim()) return error('EMPTY_RESPONSE', knowledge.respuesta_ia_no_disponible, 503);
-        const structured = JSON.parse(answer);
-        if (!Array.isArray(structured.paragraphs) || !structured.paragraphs.length || structured.paragraphs.some(p => typeof p !== 'string' || !p.trim())) return error('EMPTY_RESPONSE', knowledge.respuesta_ia_no_disponible, 503);
-        const plainAnswer = structured.paragraphs.map(p => p.replace(/\*\*|__|\x60/g, '').replace(/^\s*#{1,6}\s+/gm, '').trim()).join('\n\n');
-        if (plainAnswer.includes('|') || /(?:^|\s)\/(?:api|login|register|mis-mascotas|mis-citas|mascotas)(?:[\s/.,]|$)/i.test(plainAnswer)) return error('INVALID_RESPONSE_FORMAT', knowledge.respuesta_ia_no_disponible, 503);
-        return json({ answer: plainAnswer, knowledgeVersion: knowledge.version, usage: { source: "groq", model: usedModel, prompt_tokens: data.usage?.prompt_tokens, completion_tokens: data.usage?.completion_tokens, total_tokens: data.usage?.total_tokens } });
+        return error(lastFailure, knowledge.respuesta_ia_no_disponible, lastFailure === 'PROVIDER_LIMIT' ? 429 : 503, lastFailure === 'PROVIDER_LIMIT' ? { 'Retry-After': '60' } : {});
       } catch {
         // No registrar preguntas, respuestas ni errores del proveedor que puedan contener datos privados.
         return error('SERVICE_UNAVAILABLE', knowledge.respuesta_ia_no_disponible, 503);
