@@ -43,17 +43,6 @@
   },
   "servicios": [
     {
-      "nombre": "Consulta Avanzada",
-      "tipo": "CONSULTA",
-      "precio": 100000,
-      "moneda": "COP",
-      "descripcion": "Evaluación detallada y seguimiento de un problema persistente por un veterinario general.",
-      "activo": true,
-      "requisitos": "No hay requisitos adicionales para solicitar una cita de este servicio.",
-      "alcance": "Evaluación detallada de un problema que persiste o necesita seguimiento por un veterinario general. Incluye revisión de antecedentes, evolución de los síntomas y resultados de exámenes disponibles para orientar el manejo del caso.",
-      "indicaciones_clinicas": "Comparte cómo ha evolucionado el problema, los tratamientos recibidos y los resultados de estudios anteriores, si cuentas con ellos. Esto ayuda a revisar el caso con mayor detalle."
-    },
-    {
       "nombre": "Consulta General",
       "tipo": "CONSULTA",
       "precio": 90000,
@@ -181,12 +170,12 @@
     {
       "tema": "servicios",
       "pregunta": "¿Qué servicios ofrece vetclinic y cuáles pertenecen a consulta, estética u otros procedimientos?",
-      "respuesta": "Podemos ayudarte con la salud y el cuidado de tu mascota. Contamos con consulta general, avanzada y especializada, además de vacunación. Para el cuidado del pelaje ofrecemos baño medicado y corte de pelo; también tenemos limpieza dental y cirugía menor. Si me cuentas qué servicio te interesa, te explico su precio y lo que incluye."
+      "respuesta": "Podemos ayudarte con la salud y el cuidado de tu mascota. Contamos con consulta general y especializada, además de vacunación. Para el cuidado del pelaje ofrecemos baño medicado y corte de pelo; también tenemos limpieza dental y cirugía menor. Si me cuentas qué servicio te interesa, te explico su precio y lo que incluye."
     },
     {
       "tema": "precios_consultas",
-      "pregunta": "¿Cuánto cuestan la Consulta General, la Consulta Avanzada y la Consulta Especializada, y cómo se describe cada una?",
-      "respuesta": "La consulta general cuesta $90.000 COP y es una primera revisión para conocer cómo está tu mascota y orientarte sobre su cuidado.\n\nSi tiene un problema que persiste o necesita seguimiento más detallado, la consulta avanzada cuesta $100.000 COP y la realiza un veterinario general.\n\nLa consulta especializada cuesta $180.000 COP y está enfocada en un área concreta de la salud, con un veterinario formado en ella. Para conocer la especialidad disponible, puedes consultar con recepción."
+      "pregunta": "¿Cuánto cuestan la Consulta General y la Consulta Especializada, y cómo se describe cada una?",
+      "respuesta": "La consulta general cuesta $90.000 COP y es una primera revisión para conocer cómo está tu mascota y orientarte sobre su cuidado.\n\nLa consulta especializada cuesta $180.000 COP y está enfocada en un área concreta de la salud, con un veterinario formado en ella. Para conocer la especialidad disponible, puedes consultar con recepción."
     },
     {
       "tema": "precio_vacunacion",
@@ -271,7 +260,7 @@
     {
       "tema": "catalogo_precios",
       "pregunta": "¿Qué servicios ofrecen y cuáles son sus precios?",
-      "respuesta": "Estos son nuestros servicios y sus precios:\n\n• Consulta Avanzada: $100.000 COP. Evaluación detallada y seguimiento de un problema persistente por un veterinario general.\n• Consulta General: $90.000 COP. Valoración inicial mediante revisión física general y orientación veterinaria.\n• Consulta Especializada: $180.000 COP. Valoración de un área específica de salud por un veterinario con formación en esa área.\n• Vacunación: $50.000 COP. Aplicación de vacunas\n• Baño Medicado: $40.000 COP. Baño con productos medicinales\n• Corte de Pelo: $35.000 COP. Corte y arreglo de pelo\n• Limpieza Dental: $60.000 COP. Limpieza dental\n• Cirugía Menor: $300.000 COP. Procedimiento quirúrgico menor"
+      "respuesta": "Estos son nuestros servicios y sus precios:\n\n• Consulta General: $90.000 COP. Valoración inicial mediante revisión física general y orientación veterinaria.\n• Consulta Especializada: $180.000 COP. Valoración de un área específica de salud por un veterinario con formación en esa área.\n• Vacunación: $50.000 COP. Aplicación de vacunas\n• Baño Medicado: $40.000 COP. Baño con productos medicinales\n• Corte de Pelo: $35.000 COP. Corte y arreglo de pelo\n• Limpieza Dental: $60.000 COP. Limpieza dental\n• Cirugía Menor: $300.000 COP. Procedimiento quirúrgico menor"
     }
   ],
   "respuesta_sin_informacion": "No tengo esa información confirmada. Puedes consultar con vetclinic al teléfono 3042818284 o al correo fjgarrido@unibarranquilla.edu.co.",
